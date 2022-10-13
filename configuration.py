@@ -4,14 +4,14 @@ dataset_name = "mnist"
 # dataset_name = "coco"
 # dataset_name = "OID_v6"
 
-TRAIN_FROM_CHECKPOINT       = False # "saved_model/yolov3_custom"
+TRAIN_FROM_CHECKPOINT       = True # "saved_model/yolov3_custom"
 TRAIN_YOLO_TINY             = False
 
 # YOLO options
 YOLO_TYPE                   = "yolov3" # yolov4 or yolov3
 YOLO_FRAMEWORK              = "tf" # "tf" or "trt"
 
-YOLO_CUSTOM_WEIGHTS         = True # "checkpoints/yolov3_custom" # used in evaluate_mAP.py and custom model detection, if not using leave False
+YOLO_CUSTOM_WEIGHTS         = False # "checkpoints/yolov3_custom" # used in evaluate_mAP.py and custom model detection, if not using leave False
                             # YOLO_CUSTOM_WEIGHTS also used with TensorRT and custom model detection    
 
 YOLO_V3_WEIGHTS             = "/content/checkpoints/yolov3.weights"
@@ -24,7 +24,7 @@ YOLO_COCO_CLASSES           = "./dataset/coco.names"
 if dataset_name == "mnist":
     TRAIN_CLASSES               = "./dataset/mnist/mnist.names"
     TRAIN_ANNOT_PATH            = "./dataset/mnist/mnist_train.txt"
-    TEST_ANNOT_PATH             = "./dataset/mnist/mnist_val.txt"
+    TEST_ANNOT_PATH             = "./dataset/mnist/mnist_test.txt"
     if YOLO_TYPE == "yolov3":
         TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints"
         DATA_TYPE = "yolo_v3_mnist"
@@ -108,7 +108,7 @@ TRAIN_TRANSFER              = True
 TRAIN_LR_INIT               = 1e-4
 TRAIN_LR_END                = 1e-6
 TRAIN_WARMUP_EPOCHS         = 1
-TRAIN_EPOCHS                = 8
+TRAIN_EPOCHS                = 3
 
 # TEST options
 TEST_BATCH_SIZE             = 16
