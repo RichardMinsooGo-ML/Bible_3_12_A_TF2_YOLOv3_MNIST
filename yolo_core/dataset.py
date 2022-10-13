@@ -4,7 +4,7 @@ import random
 import numpy as np
 import tensorflow as tf
 from yolo_core.utils import read_class_names, image_preprocess
-from yolo_core.yolov3 import bbox_iou
+from yolo_core.models import bbox_iou
 from configuration import *
 
 class Dataset(object):
