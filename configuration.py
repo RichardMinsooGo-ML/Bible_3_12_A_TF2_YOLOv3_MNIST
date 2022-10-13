@@ -4,7 +4,7 @@ dataset_name = "mnist"
 # dataset_name = "coco"
 # dataset_name = "OID_v6"
 
-TRAIN_FROM_CHECKPOINT       = True # "saved_model/yolov3_custom"
+TRAIN_FROM_CHECKPOINT       = False # "saved_model/yolov3_custom"
 TRAIN_YOLO_TINY             = False
 
 # YOLO options
@@ -26,10 +26,10 @@ if dataset_name == "mnist":
     TRAIN_ANNOT_PATH            = "./dataset/mnist/mnist_train.txt"
     TEST_ANNOT_PATH             = "./dataset/mnist/mnist_val.txt"
     if YOLO_TYPE == "yolov3":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints/yolo_v3_mnist"
+        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints"
         DATA_TYPE = "yolo_v3_mnist"
     elif YOLO_TYPE == "yolov4":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints/yolo_v4_mnist"
+        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints"
         DATA_TYPE = "yolo_v4_mnist"
 
 elif dataset_name == "fashion_mnist":
