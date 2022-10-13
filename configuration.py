@@ -37,10 +37,10 @@ elif dataset_name == "fashion_mnist":
     TRAIN_ANNOT_PATH            = "./dataset/fashion_mnist/mnist_train.txt"
     TEST_ANNOT_PATH             = "./dataset/fashion_mnist/mnist_val.txt"
     if YOLO_TYPE == "yolov3":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints/yolo_v3_fashion_mnist"
+        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints"
         DATA_TYPE = "yolo_v3_fashion_mnist"
     elif YOLO_TYPE == "yolov4":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints/yolo_v4_fashion_mnist"
+        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints"
         DATA_TYPE = "yolo_v4_fashion_mnist"
 
 elif dataset_name == "voc":
