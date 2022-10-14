@@ -4,15 +4,14 @@ dataset_name = "mnist"
 # dataset_name = "coco"
 # dataset_name = "OID_v6"
 
-TRAIN_TRANSFER        = True
-TRAIN_FROM_CHECKPOINT = False # "saved_model/yolov3_custom"
-TRAIN_YOLO_TINY       = False
+TRAIN_FROM_CHECKPOINT       = False # "saved_model/yolov3_custom"
+TRAIN_YOLO_TINY             = False
 
 # YOLO options
-YOLO_TYPE           = "yolov3" # yolov4 or yolov3
-YOLO_FRAMEWORK      = "tf" # "tf" or "trt"
+YOLO_TYPE                   = "yolov3" # yolov4 or yolov3
+YOLO_FRAMEWORK              = "tf" # "tf" or "trt"
 
-YOLO_CUSTOM_WEIGHTS = False # "checkpoints/yolov3_custom" # used in evaluate_mAP.py and custom model detection, if not using leave False
+YOLO_CUSTOM_WEIGHTS         = True # "checkpoints/yolov3_custom" # used in evaluate_mAP.py and custom model detection, if not using leave False
                             # YOLO_CUSTOM_WEIGHTS also used with TensorRT and custom model detection    
 
 YOLO_V3_WEIGHTS             = "./checkpoints/yolov3.weights"
@@ -27,10 +26,10 @@ if dataset_name == "mnist":
     TRAIN_ANNOT_PATH            = "./dataset/mnist/mnist_train.txt"
     TEST_ANNOT_PATH             = "./dataset/mnist/mnist_test.txt"
     if YOLO_TYPE == "yolov3":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints"
         DATA_TYPE = "yolo_v3_mnist"
     elif YOLO_TYPE == "yolov4":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints"
         DATA_TYPE = "yolo_v4_mnist"
 
 elif dataset_name == "fashion_mnist":
@@ -38,10 +37,10 @@ elif dataset_name == "fashion_mnist":
     TRAIN_ANNOT_PATH            = "./dataset/fashion_mnist/mnist_train.txt"
     TEST_ANNOT_PATH             = "./dataset/fashion_mnist/mnist_val.txt"
     if YOLO_TYPE == "yolov3":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints"
         DATA_TYPE = "yolo_v3_fashion_mnist"
     elif YOLO_TYPE == "yolov4":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints"
         DATA_TYPE = "yolo_v4_fashion_mnist"
 
 elif dataset_name == "voc":
@@ -49,10 +48,10 @@ elif dataset_name == "voc":
     TRAIN_ANNOT_PATH            = "./dataset/voc/VOC2012_train.txt"
     TEST_ANNOT_PATH             = "./dataset/voc/VOC2012_val.txt"
     if YOLO_TYPE == "yolov3":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints/yolo_v3_voc"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints/yolo_v3_voc"
         DATA_TYPE = "yolo_v3_voc"
     elif YOLO_TYPE == "yolov4":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints/yolo_v4_voc"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints/yolo_v4_voc"
         DATA_TYPE = "yolo_v4_voc"
     
 elif dataset_name == "coco":
@@ -60,10 +59,10 @@ elif dataset_name == "coco":
     TRAIN_ANNOT_PATH            = "./dataset/coco/COCO2017_train.txt"
     TEST_ANNOT_PATH             = "./dataset/coco/COCO2017_val.txt"
     if YOLO_TYPE == "yolov3":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints/yolo_v3_coco"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints/yolo_v3_coco"
         DATA_TYPE = "yolo_v3_coco"
     elif YOLO_TYPE == "yolov4":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints/yolo_v4_coco"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints/yolo_v4_coco"
         DATA_TYPE = "yolo_v4_coco"
         
 elif dataset_name == "OID_v6":
@@ -71,10 +70,10 @@ elif dataset_name == "OID_v6":
     TRAIN_ANNOT_PATH            = "./dataset/OID_v6/OID_V6_train.txt"
     TEST_ANNOT_PATH             = "./dataset/OID_v6/OID_V6_test.txt"
     if YOLO_TYPE == "yolov3":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints/yolo_v3_OID_v6"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints/yolo_v3_OID_v6"
         DATA_TYPE = "yolo_v3_OID_v6"
     elif YOLO_TYPE == "yolov4":
-        TRAIN_CHECKPOINTS_FOLDER    = "/content/checkpoints/yolo_v4_OID_v6"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints/yolo_v4_OID_v6"
         DATA_TYPE = "yolo_v4_OID_v6"
 
 if TRAIN_YOLO_TINY:
@@ -119,8 +118,8 @@ TEST_DECTECTED_IMAGE_PATH   = ""
 TEST_SCORE_THRESHOLD        = 0.3
 TEST_IOU_THRESHOLD          = 0.45
 
-SIZE_TRAIN = 256*TRAIN_BATCH_SIZE
-SIZE_TEST  = 64*TEST_BATCH_SIZE
+SIZE_TRAIN = 512*TRAIN_BATCH_SIZE
+SIZE_TEST  = 256*TEST_BATCH_SIZE
 
 #YOLOv3-TINY and YOLOv4-TINY WORKAROUND
 if TRAIN_YOLO_TINY:
