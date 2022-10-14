@@ -108,7 +108,7 @@ TRAIN_TRANSFER              = True
 TRAIN_LR_INIT               = 1e-4
 TRAIN_LR_END                = 1e-6
 TRAIN_WARMUP_EPOCHS         = 1
-TRAIN_EPOCHS                = 3
+TRAIN_EPOCHS                = 4
 
 # TEST options
 TEST_BATCH_SIZE             = 16
