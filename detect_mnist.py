@@ -17,7 +17,7 @@ while True:
 
     image_path = image_info[0]
 
-    yolo = Create_Yolov3(input_size=YOLO_INPUT_SIZE, CLASSES=TRAIN_CLASSES)
+    yolo = Create_Yolo(input_size=YOLO_INPUT_SIZE, CLASSES=TRAIN_CLASSES)
     yolo.load_weights(f"./saved_model/{TRAIN_MODEL_NAME}") # use keras weights
 
     detect_image(yolo, image_path, "output_mnist.jpg", input_size=YOLO_INPUT_SIZE, show=True, CLASSES=TRAIN_CLASSES, rectangle_colors=(255,0,0))
