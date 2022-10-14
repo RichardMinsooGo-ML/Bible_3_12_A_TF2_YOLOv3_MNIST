@@ -4,7 +4,7 @@ dataset_name = "mnist"
 # dataset_name = "coco"
 # dataset_name = "OID_v6"
 
-TRAIN_FROM_CHECKPOINT       = True # "saved_model/yolov3_custom"
+TRAIN_FROM_CHECKPOINT       = False # "saved_model/yolov3_custom"
 TRAIN_YOLO_TINY             = False
 
 # YOLO options
@@ -14,10 +14,10 @@ YOLO_FRAMEWORK              = "tf" # "tf" or "trt"
 YOLO_CUSTOM_WEIGHTS         = False # "checkpoints/yolov3_custom" # used in evaluate_mAP.py and custom model detection, if not using leave False
                             # YOLO_CUSTOM_WEIGHTS also used with TensorRT and custom model detection    
 
-YOLO_V3_WEIGHTS             = "/content/checkpoints/yolov3.weights"
-YOLO_V3_TINY_WEIGHTS        = "/content/checkpoints/yolov3-tiny.weights"
-YOLO_V4_WEIGHTS             = "/content/checkpoints/yolov4.weights"
-YOLO_V4_TINY_WEIGHTS        = "/content/checkpoints/yolov4-tiny.weights"
+YOLO_V3_WEIGHTS             = "./checkpoints/yolov3.weights"
+YOLO_V3_TINY_WEIGHTS        = "./checkpoints/yolov3-tiny.weights"
+YOLO_V4_WEIGHTS             = "./checkpoints/yolov4.weights"
+YOLO_V4_TINY_WEIGHTS        = "./checkpoints/yolov4-tiny.weights"
 # YOLO_TRT_QUANTIZE_MODE      = "INT8" # INT8, FP16, FP32
 YOLO_COCO_CLASSES           = "./dataset/coco.names"
     
