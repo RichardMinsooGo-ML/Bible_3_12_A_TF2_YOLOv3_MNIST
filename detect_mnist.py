@@ -1,13 +1,4 @@
-#================================================================
-#
-#   File name   : detect_mnist.py
-#   Author      : PyLessons
-#   Created date: 2020-08-12
-#   Website     : https://pylessons.com/
-#   GitHub      : https://github.com/pythonlessons/TensorFlow-2.x-YOLOv3
-#   Description : mnist object detection example
-#
-#================================================================
+
 import os
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 import cv2
@@ -21,7 +12,7 @@ from configuration import *
 
 while True:
     ID = random.randint(0, 200)
-    label_txt = "../01_1K_MNIST/mnist_test.txt"
+    label_txt = "./dataset/mnist/mnist_test.txt"
     image_info = open(label_txt).readlines()[ID].split()
 
     image_path = image_info[0]
