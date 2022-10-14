@@ -6,7 +6,7 @@ import numpy as np
 import random
 import time
 import tensorflow as tf
-from yolo_core.yolov3 import Create_Yolov3
+from yolo_core.models import Create_Yolov3
 from yolo_core.utils import detect_image
 from configuration import *
 
