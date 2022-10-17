@@ -4,14 +4,15 @@ dataset_name = "mnist"
 # dataset_name = "coco"
 # dataset_name = "OID_v6"
 
-TRAIN_FROM_CHECKPOINT       = False # "saved_model/yolov3_custom"
-TRAIN_YOLO_TINY             = False
+TRAIN_TRANSFER        = False
+TRAIN_FROM_CHECKPOINT = True # "saved_model/yolov3_custom"
+TRAIN_YOLO_TINY       = False
 
 # YOLO options
-YOLO_TYPE                   = "yolov3" # yolov4 or yolov3
-YOLO_FRAMEWORK              = "tf" # "tf" or "trt"
+YOLO_TYPE             = "yolov3" # yolov4 or yolov3
+YOLO_FRAMEWORK        = "tf" # "tf" or "trt"
 
-YOLO_CUSTOM_WEIGHTS         = True # "checkpoints/yolov3_custom" # used in evaluate_mAP.py and custom model detection, if not using leave False
+YOLO_CUSTOM_WEIGHTS   = True # "checkpoints/yolov3_custom" # used in evaluate_mAP.py and custom model detection, if not using leave False
                             # YOLO_CUSTOM_WEIGHTS also used with TensorRT and custom model detection    
 
 YOLO_V3_WEIGHTS             = "./checkpoints/yolov3.weights"
@@ -104,7 +105,6 @@ TRAIN_LOAD_IMAGES_TO_RAM    = True # With True faster training, but need more RA
 TRAIN_BATCH_SIZE            = 16
 TRAIN_INPUT_SIZE            = 416
 TRAIN_DATA_AUG              = True
-TRAIN_TRANSFER              = True
 TRAIN_LR_INIT               = 1e-4
 TRAIN_LR_END                = 1e-6
 TRAIN_WARMUP_EPOCHS         = 1
@@ -118,8 +118,8 @@ TEST_DECTECTED_IMAGE_PATH   = ""
 TEST_SCORE_THRESHOLD        = 0.3
 TEST_IOU_THRESHOLD          = 0.45
 
-SIZE_TRAIN = 512*TRAIN_BATCH_SIZE
-SIZE_TEST  = 256*TEST_BATCH_SIZE
+SIZE_TRAIN = 256*TRAIN_BATCH_SIZE
+SIZE_TEST  = 96*TEST_BATCH_SIZE
 
 #YOLOv3-TINY and YOLOv4-TINY WORKAROUND
 if TRAIN_YOLO_TINY:
