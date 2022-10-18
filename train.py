@@ -15,6 +15,7 @@ from yolo_core.models import Create_Yolo, compute_loss
 from yolo_core.utils import load_yolo_weights
 from configuration import *
 from config.train_config import parse_train_configs
+from evaluate_mAP import get_mAP
 
 import sys
 
@@ -164,7 +165,7 @@ def main():
             # print("Step :", cur_step+1)
             if (cur_step+1)%25 == 0:
                 print("epoch:{:3d}/{}, step:{:5.0f}/{}, lr:{:.6f}, giou_loss:{:7.2f}, conf_loss:{:7.2f}, prob_loss:{:7.2f}, total_loss:{:7.2f}"
-                      .format(epoch+1, configs.num_epochs, cur_step+1, steps_per_epoch, results[1], results[2], results[3], results[4], results[5]))
+                      .format(epoch+1, TRAIN_EPOCHS, cur_step+1, steps_per_epoch, results[1], results[2], results[3], results[4], results[5]))
             """    
             # if (cur_step+1)%1000 == 0 or (cur_step+1) == steps_per_epoch:
             #     model.save_weights(save_directory)
