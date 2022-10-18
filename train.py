@@ -48,7 +48,7 @@ def main():
     steps_per_epoch = len(trainset)
     global_steps = tf.Variable(1, trainable=False, dtype=tf.int64)
     warmup_steps = TRAIN_WARMUP_EPOCHS * steps_per_epoch
-    total_steps  = TRAIN_EPOCHS * steps_per_epoch
+    total_steps  = configs.num_epochs * steps_per_epoch
 
     if TRAIN_TRANSFER:
         Darknet = Create_Yolo(input_size=YOLO_INPUT_SIZE, CLASSES=YOLO_COCO_CLASSES)
@@ -139,7 +139,7 @@ def main():
             
         return giou_loss.numpy(), conf_loss.numpy(), prob_loss.numpy(), total_loss.numpy()
 
-    # mAP_model = Create_Yolo(input_size=YOLO_INPUT_SIZE, CLASSES=TRAIN_CLASSES) # create second model to measure mAP
+    mAP_model = Create_Yolo(input_size=YOLO_INPUT_SIZE, CLASSES=TRAIN_CLASSES) # create second model to measure mAP
 
     best_val_loss = 1000 # should be large at start
     
@@ -164,7 +164,7 @@ def main():
             # print("Step :", cur_step+1)
             if (cur_step+1)%25 == 0:
                 print("epoch:{:3d}/{}, step:{:5.0f}/{}, lr:{:.6f}, giou_loss:{:7.2f}, conf_loss:{:7.2f}, prob_loss:{:7.2f}, total_loss:{:7.2f}"
-                      .format(epoch+1, TRAIN_EPOCHS, cur_step+1, steps_per_epoch, results[1], results[2], results[3], results[4], results[5]))
+                      .format(epoch+1, configs.num_epochs, cur_step+1, steps_per_epoch, results[1], results[2], results[3], results[4], results[5]))
             """    
             # if (cur_step+1)%1000 == 0 or (cur_step+1) == steps_per_epoch:
             #     model.save_weights(save_directory)
@@ -201,8 +201,8 @@ def main():
           format(giou_val/count, conf_val/count, prob_val/count, total_val/count))
 
     # measure mAP of trained custom model
-    # mAP_model.load_weights(save_directory) # use keras weights
-    # get_mAP(mAP_model, testset, score_threshold=TEST_SCORE_THRESHOLD, iou_threshold=TEST_IOU_THRESHOLD)
+    mAP_model.load_weights(save_directory) # use keras weights
+    get_mAP(mAP_model, testset, score_threshold=TEST_SCORE_THRESHOLD, iou_threshold=TEST_IOU_THRESHOLD)
     
 if __name__ == '__main__':
     main()
