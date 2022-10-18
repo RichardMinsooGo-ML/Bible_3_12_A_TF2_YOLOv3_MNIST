@@ -43,6 +43,7 @@ def parse_train_configs():
 
     ############## Dataset, logs, Checkpoints dir ######################
     
+    """
     configs.dataset_dir = os.path.join(configs.working_dir, 'dataset', 'kitti')
     configs.checkpoints_dir = os.path.join(configs.working_dir, 'checkpoints')
     configs.logs_dir = os.path.join(configs.working_dir, 'logs')
@@ -51,5 +52,6 @@ def parse_train_configs():
         os.makedirs(configs.checkpoints_dir)
     if not os.path.isdir(configs.logs_dir):
         os.makedirs(configs.logs_dir)
+    """
 
     return configs
