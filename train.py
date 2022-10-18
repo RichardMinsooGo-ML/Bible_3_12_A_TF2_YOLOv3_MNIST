@@ -131,7 +131,7 @@ def main():
             
         return giou_loss.numpy(), conf_loss.numpy(), prob_loss.numpy(), total_loss.numpy()
 
-    mAP_model = Create_Yolo(input_size=YOLO_INPUT_SIZE, CLASSES=TRAIN_CLASSES) # create second model to measure mAP
+    # mAP_model = Create_Yolo(input_size=YOLO_INPUT_SIZE, CLASSES=TRAIN_CLASSES) # create second model to measure mAP
 
     best_val_loss = 1000 # should be large at start
     
