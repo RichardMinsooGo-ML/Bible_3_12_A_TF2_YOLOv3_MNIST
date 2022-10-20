@@ -78,7 +78,7 @@ elif dataset_name == "OID_v6":
         DATA_TYPE = "yolo_v4_OID_v6"
 
 if TRAIN_YOLO_TINY:
-    TRAIN_CHECKPOINTS_FOLDER  += "_tiny"
+    # TRAIN_CHECKPOINTS_FOLDER  += "_tiny"
     DATA_TYPE  += "_tiny"
     
 YOLO_STRIDES                = [8, 16, 32]
