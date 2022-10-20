@@ -4,7 +4,7 @@ os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
 
 from tensorflow.python.client import device_lib
-# print(device_lib.list_local_devices())
+print(device_lib.list_local_devices())
 
 import shutil
 import numpy as np
@@ -14,13 +14,14 @@ from yolo_core.dataset import Dataset
 from yolo_core.models import Create_Yolo, compute_loss
 from yolo_core.utils import load_yolo_weights
 from configuration import *
-from config.train_config import parse_train_configs
 from evaluate_mAP import get_mAP
 
 import sys
 
 if YOLO_TYPE == "yolov3":
     Darknet_weights = YOLO_V3_TINY_WEIGHTS if TRAIN_YOLO_TINY else YOLO_V3_WEIGHTS
+elif YOLO_TYPE == "yolov4":
+    Darknet_weights = YOLO_V4_TINY_WEIGHTS if TRAIN_YOLO_TINY else YOLO_V4_WEIGHTS
 
 if TRAIN_YOLO_TINY: TRAIN_MODEL_NAME += "_Tiny"
 
@@ -29,9 +30,6 @@ if not os.path.exists(TRAIN_CHECKPOINTS_FOLDER):
     os.makedirs(TRAIN_CHECKPOINTS_FOLDER)
     
 def main():
-    
-    configs = parse_train_configs()
-
     global TRAIN_FROM_CHECKPOINT
     
     gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -44,19 +42,18 @@ def main():
     writer = tf.summary.create_file_writer(TRAIN_LOGDIR)
 
     trainset = Dataset('train')
-    testset  = Dataset('test')
+    # testset = Dataset('test')
 
     steps_per_epoch = len(trainset)
     global_steps = tf.Variable(1, trainable=False, dtype=tf.int64)
     warmup_steps = TRAIN_WARMUP_EPOCHS * steps_per_epoch
-    total_steps  = configs.num_epochs * steps_per_epoch
+    total_steps = TRAIN_EPOCHS * steps_per_epoch
 
     if TRAIN_TRANSFER:
         Darknet = Create_Yolo(input_size=YOLO_INPUT_SIZE, CLASSES=YOLO_COCO_CLASSES)
         load_yolo_weights(Darknet, Darknet_weights) # use darknet weights
 
     model = Create_Yolo(input_size=YOLO_INPUT_SIZE, training=True, CLASSES=TRAIN_CLASSES)
-
     if TRAIN_FROM_CHECKPOINT:
         try:
             model.load_weights(os.path.join(TRAIN_CHECKPOINTS_FOLDER, DATA_TYPE))
@@ -75,9 +72,10 @@ def main():
                     model.layers[i].set_weights(layer_weights)
                 except:
                     print("skipping", model.layers[i].name)
-             
+                    
     save_directory = os.path.join(TRAIN_CHECKPOINTS_FOLDER, DATA_TYPE)
     # model.save_weights(save_directory)
+    # sys.exit()
     
     optimizer = tf.keras.optimizers.Adam()
 
@@ -145,7 +143,7 @@ def main():
     best_val_loss = 1000 # should be large at start
     
     import tqdm
-    for epoch in range(configs.num_epochs):
+    for epoch in range(TRAIN_EPOCHS):
         # for image_data, target in trainset:
         count, giou_val, conf_val, prob_val, total_val = 0., 0, 0, 0, 0
         
@@ -180,7 +178,7 @@ def main():
             model.save_weights(os.path.join(TRAIN_CHECKPOINTS_FOLDER, DATA_TYPE))
             continue
         """
-      
+    """    
     count, giou_val, conf_val, prob_val, total_val = 0., 0, 0, 0, 0
     # for image_data, target in testset:
     for image_data, target in tqdm.tqdm(testset):
@@ -204,6 +202,6 @@ def main():
     # measure mAP of trained custom model
     mAP_model.load_weights(save_directory) # use keras weights
     get_mAP(mAP_model, testset, score_threshold=TEST_SCORE_THRESHOLD, iou_threshold=TEST_IOU_THRESHOLD)
-    
+    """
 if __name__ == '__main__':
     main()
