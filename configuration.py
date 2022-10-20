@@ -4,15 +4,16 @@ dataset_name = "mnist"
 # dataset_name = "coco"
 # dataset_name = "OID_v6"
 
-TRAIN_TRANSFER        = False
-TRAIN_FROM_CHECKPOINT = True # "saved_model/yolov3_custom"
-TRAIN_YOLO_TINY       = False
-YOLO_CUSTOM_WEIGHTS   = True # "checkpoints/yolov3_custom" # used in evaluate_mAP.py and custom model detection, if not using leave False
-                            # YOLO_CUSTOM_WEIGHTS also used with TensorRT and custom model detection    
+TRAIN_TRANSFER              = True
+TRAIN_FROM_CHECKPOINT       = True # "saved_model/yolov3_custom"
+TRAIN_YOLO_TINY             = False
 
+YOLO_CUSTOM_WEIGHTS         = True # "checkpoints/yolov3_custom" # used in evaluate_mAP.py and custom model detection, if not using leave False
+                            # YOLO_CUSTOM_WEIGHTS also used with TensorRT and custom model detection    
 # YOLO options
-YOLO_TYPE             = "yolov3" # yolov4 or yolov3
-YOLO_FRAMEWORK        = "tf" # "tf" or "trt"
+YOLO_TYPE                   = "yolov3" # yolov4 or yolov3
+YOLO_FRAMEWORK              = "tf" # "tf" or "trt"
+
 
 YOLO_V3_WEIGHTS             = "./checkpoints/yolov3.weights"
 YOLO_V3_TINY_WEIGHTS        = "./checkpoints/yolov3-tiny.weights"
@@ -24,7 +25,7 @@ YOLO_COCO_CLASSES           = "./dataset/coco.names"
 if dataset_name == "mnist":
     TRAIN_CLASSES               = "./dataset/mnist/mnist.names"
     TRAIN_ANNOT_PATH            = "./dataset/mnist/mnist_train.txt"
-    TEST_ANNOT_PATH             = "./dataset/mnist/mnist_test.txt"
+    TEST_ANNOT_PATH             = "./dataset/mnist/mnist_val.txt"
     if YOLO_TYPE == "yolov3":
         TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints"
         DATA_TYPE = "yolo_v3_mnist"
@@ -48,10 +49,10 @@ elif dataset_name == "voc":
     TRAIN_ANNOT_PATH            = "./dataset/voc/VOC2012_train.txt"
     TEST_ANNOT_PATH             = "./dataset/voc/VOC2012_val.txt"
     if YOLO_TYPE == "yolov3":
-        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints/yolo_v3_voc"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints"
         DATA_TYPE = "yolo_v3_voc"
     elif YOLO_TYPE == "yolov4":
-        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints/yolo_v4_voc"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints"
         DATA_TYPE = "yolo_v4_voc"
     
 elif dataset_name == "coco":
@@ -59,10 +60,10 @@ elif dataset_name == "coco":
     TRAIN_ANNOT_PATH            = "./dataset/coco/COCO2017_train.txt"
     TEST_ANNOT_PATH             = "./dataset/coco/COCO2017_val.txt"
     if YOLO_TYPE == "yolov3":
-        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints/yolo_v3_coco"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints"
         DATA_TYPE = "yolo_v3_coco"
     elif YOLO_TYPE == "yolov4":
-        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints/yolo_v4_coco"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints"
         DATA_TYPE = "yolo_v4_coco"
         
 elif dataset_name == "OID_v6":
@@ -70,10 +71,10 @@ elif dataset_name == "OID_v6":
     TRAIN_ANNOT_PATH            = "./dataset/OID_v6/OID_V6_train.txt"
     TEST_ANNOT_PATH             = "./dataset/OID_v6/OID_V6_test.txt"
     if YOLO_TYPE == "yolov3":
-        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints/yolo_v3_OID_v6"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints"
         DATA_TYPE = "yolo_v3_OID_v6"
     elif YOLO_TYPE == "yolov4":
-        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints/yolo_v4_OID_v6"
+        TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints"
         DATA_TYPE = "yolo_v4_OID_v6"
 
 if TRAIN_YOLO_TINY:
@@ -107,7 +108,7 @@ TRAIN_DATA_AUG              = True
 TRAIN_LR_INIT               = 1e-4
 TRAIN_LR_END                = 1e-6
 TRAIN_WARMUP_EPOCHS         = 1
-TRAIN_EPOCHS                = 2
+TRAIN_EPOCHS                = 8
 
 # TEST options
 TEST_BATCH_SIZE             = 16
@@ -117,8 +118,8 @@ TEST_DECTECTED_IMAGE_PATH   = ""
 TEST_SCORE_THRESHOLD        = 0.3
 TEST_IOU_THRESHOLD          = 0.45
 
-SIZE_TRAIN = 256*TRAIN_BATCH_SIZE
-SIZE_TEST  = 64*TEST_BATCH_SIZE
+SIZE_TRAIN = 512*TRAIN_BATCH_SIZE
+SIZE_TEST  = 256*TEST_BATCH_SIZE
 
 #YOLOv3-TINY and YOLOv4-TINY WORKAROUND
 if TRAIN_YOLO_TINY:
