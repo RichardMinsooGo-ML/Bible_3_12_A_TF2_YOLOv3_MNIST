@@ -7,13 +7,12 @@ dataset_name = "mnist"
 TRAIN_TRANSFER        = False
 TRAIN_FROM_CHECKPOINT = True # "saved_model/yolov3_custom"
 TRAIN_YOLO_TINY       = False
+YOLO_CUSTOM_WEIGHTS   = True # "checkpoints/yolov3_custom" # used in evaluate_mAP.py and custom model detection, if not using leave False
+                            # YOLO_CUSTOM_WEIGHTS also used with TensorRT and custom model detection    
 
 # YOLO options
 YOLO_TYPE             = "yolov3" # yolov4 or yolov3
 YOLO_FRAMEWORK        = "tf" # "tf" or "trt"
-
-YOLO_CUSTOM_WEIGHTS   = True # "checkpoints/yolov3_custom" # used in evaluate_mAP.py and custom model detection, if not using leave False
-                            # YOLO_CUSTOM_WEIGHTS also used with TensorRT and custom model detection    
 
 YOLO_V3_WEIGHTS             = "./checkpoints/yolov3.weights"
 YOLO_V3_TINY_WEIGHTS        = "./checkpoints/yolov3-tiny.weights"
@@ -119,7 +118,7 @@ TEST_SCORE_THRESHOLD        = 0.3
 TEST_IOU_THRESHOLD          = 0.45
 
 SIZE_TRAIN = 256*TRAIN_BATCH_SIZE
-SIZE_TEST  = 96*TEST_BATCH_SIZE
+SIZE_TEST  = 64*TEST_BATCH_SIZE
 
 #YOLOv3-TINY and YOLOv4-TINY WORKAROUND
 if TRAIN_YOLO_TINY:
