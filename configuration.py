@@ -25,7 +25,7 @@ YOLO_COCO_CLASSES           = "./dataset/coco.names"
 if dataset_name == "mnist":
     TRAIN_CLASSES               = "./dataset/mnist/mnist.names"
     TRAIN_ANNOT_PATH            = "./dataset/mnist/mnist_train.txt"
-    TEST_ANNOT_PATH             = "./dataset/mnist/mnist_val.txt"
+    TEST_ANNOT_PATH             = "./dataset/mnist/mnist_test.txt"
     if YOLO_TYPE == "yolov3":
         TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints"
         DATA_TYPE = "yolo_v3_mnist"
@@ -36,7 +36,7 @@ if dataset_name == "mnist":
 elif dataset_name == "fashion_mnist":
     TRAIN_CLASSES               = "./dataset/fashion_mnist/mnist.names"
     TRAIN_ANNOT_PATH            = "./dataset/fashion_mnist/mnist_train.txt"
-    TEST_ANNOT_PATH             = "./dataset/fashion_mnist/mnist_val.txt"
+    TEST_ANNOT_PATH             = "./dataset/fashion_mnist/mnist_test.txt"
     if YOLO_TYPE == "yolov3":
         TRAIN_CHECKPOINTS_FOLDER    = "./checkpoints"
         DATA_TYPE = "yolo_v3_fashion_mnist"
